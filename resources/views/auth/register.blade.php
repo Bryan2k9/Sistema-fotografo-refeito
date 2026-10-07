@@ -63,7 +63,7 @@
         <div class="mt-4">
             <x-input-label for="photo" :value="__('Foto de Perfil')" />
 
-            <input id="photo" name="photo" type="file" accept="image/*"
+            <input id="photo" name="path_photo" type="file" accept="image/*"
                 class="block mt-1 w-full text-sm text-black-800 dark:text-black-200 font-medium
                 file:mr-4 file:py-2 file:px-4
                 file:rounded-md file:border-0
@@ -74,7 +74,7 @@
                 active:file:scale-95
                 cursor-pointer transition duration-150" />
 
-            <x-input-error :messages="$errors->get('photo')" class="mt-2" />
+            <x-input-error :messages="$errors->get('path_photo')" class="mt-2" />
         </div>
 
 
