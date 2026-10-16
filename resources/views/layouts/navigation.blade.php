@@ -5,7 +5,11 @@
             <div class="flex">
                 <!-- Foto de perfil -->
 
-                <img src="{{asset(Auth::user()->path_photo)}}" alt="">
+                @if (str_starts_with(Auth::user()->photo, 'photo-profile'))
+                    <img src="{{ asset('storage/' . Auth::user()->photo) }}" alt="">
+                @else
+                    <img src="{{ asset(Auth::user()->photo) }}" alt="">
+                @endif
 
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">

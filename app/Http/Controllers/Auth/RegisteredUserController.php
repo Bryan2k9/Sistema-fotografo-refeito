@@ -39,13 +39,18 @@ class RegisteredUserController extends Controller
             'photo' => ['nullable', 'image', 'mimes:jpeg,png,jpg,webp', 'max:2048'],
         ]);
 
-       
+        $path = 'assets/img/default_img.jpg';
+
+        if($request->hasFile('photo')) {
+            $path = $request->file('photo')->store('photo-profile' , 'public');
+        }
 
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
-
+            'role' => $request->role,
+            'photo' => $path,
         ]);
 
         event(new Registered($user));

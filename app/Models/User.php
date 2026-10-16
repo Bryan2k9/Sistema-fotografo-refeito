@@ -2,15 +2,19 @@
 
 namespace App\Models;
 
+
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Database\Factories\UserFactory;
 use Illuminate\Database\Eloquent\Attributes\Fillable;
 use Illuminate\Database\Eloquent\Attributes\Hidden;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use App\Models\Photo;
+use App\Models\Like;
 
-#[Fillable(['name', 'email', 'password', 'role', 'path_photo'])]
+#[Fillable(['name', 'email', 'password', 'role', 'photo'])]
 #[Hidden(['password', 'remember_token'])]
 class User extends Authenticatable
 {
@@ -29,4 +33,14 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+
+    public function photo(): HasMany {
+        return $this->hasMany(Photo::class);
+    }
+
+    public function like(): HasMany {
+        return $this->hasMany(Like::class);
+    }
+
 }
+
